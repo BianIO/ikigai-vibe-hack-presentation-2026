@@ -30,8 +30,7 @@ jobs:
           npm install @slidev/cli@latest @slidev/theme-default@latest vue@latest --legacy-peer-deps
 
       - name: Build slides
-        # Use hardcoded base path to prevent GitHub Pages routing conflicts
-        run: npx slidev build ./slides.md --base "/ikigai-vibe-hack-presentation-2026/" --out dist
+        run: npx slidev build ./slides.md --base ./ --out dist
 
       - name: Prepare GitHub Pages artifact
         run: |
