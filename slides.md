@@ -259,7 +259,7 @@ const imgOk = ref(true)
 
 <div class="ui-wrap">
   <div class="head">
-    <span class="tag">USER INTELLIGENCE</span>
+    <span class="tag">COMMUNITY DRIVEN</span>
     <h2>Interactive Safety Map</h2>
   </div>
 
