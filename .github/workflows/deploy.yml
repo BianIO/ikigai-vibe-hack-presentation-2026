@@ -2,7 +2,7 @@ name: Deploy Slides to GitHub Pages
 
 on:
   push:
-    branches: [main]   # 若預設分支是 master 請改這裡
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -24,10 +24,10 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install Slidev
+      - name: Install Slidev and Dependencies
         run: |
           npm init -y
-          npm install @slidev/cli@latest @slidev/theme-default@latest
+          npm install @slidev/cli@latest @slidev/theme-default@latest vue --legacy-peer-deps
 
       - name: Build slides
         run: npx slidev build slides.md --base "/${{ github.event.repository.name }}/" --out "$GITHUB_WORKSPACE/dist"
