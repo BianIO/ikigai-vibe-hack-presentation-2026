@@ -303,7 +303,7 @@ const imgOk = ref(true)
 .device { position: relative; width: 200px; }
 .phone { width: 200px; aspect-ratio: 9 / 19; background: #0b1220; border: 1px solid #20304c; border-radius: 30px; padding: 8px; position: relative; box-shadow: 0 26px 55px rgba(2,6,23,.55); }
 .phone .notch { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 74px; height: 16px; background: #0b1220; border-radius: 0 0 11px 11px; z-index: 2; }
-.screen { width: 100%; height: 100%; object-fit: cover; border-radius: 23px; display: block; }
+.screen { width: 100%; height: 100%; object-fit: contain; border-radius: 23px; display: block; }
 .screen-ph { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .9rem; text-align: center; font-size: .72rem; color: #6b80a0; background: #13203a; border-radius: 23px; }
 
 .hot { position: absolute; display: flex; align-items: center; width: 260px; pointer-events: none; }
@@ -383,7 +383,7 @@ const imgOk = ref(true)
 .device { position: relative; width: 200px; }
 .phone { width: 200px; aspect-ratio: 9 / 19; background: #0b1220; border: 1px solid #20304c; border-radius: 30px; padding: 8px; position: relative; box-shadow: 0 26px 55px rgba(2,6,23,.55); }
 .phone .notch { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 74px; height: 16px; background: #0b1220; border-radius: 0 0 11px 11px; z-index: 2; }
-.screen { width: 100%; height: 100%; object-fit: cover; border-radius: 23px; display: block; }
+.screen { width: 100%; height: 100%; object-fit: contain; border-radius: 23px; display: block; }
 .screen-ph { display: flex; align-items: center; justify-content: center; text-align: center; font-size: .7rem; color: #6b80a0; background: #13203a; border-radius: 23px; }
 
 .hot { position: absolute; display: flex; align-items: center; width: 260px; pointer-events: none; }
