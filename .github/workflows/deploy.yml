@@ -5,13 +5,11 @@ on:
     branches: [main]   # 若預設分支是 master 請改這裡
   workflow_dispatch:    # 也可在 Actions 頁手動觸發
 
-# GitHub Pages 部署所需權限
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 同時間只跑一個部署
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -24,10 +22,18 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22          # Slidev 新版相依套件需要 Node >=22
 
+      # 先把 CLI 與主題一起裝到本地 node_modules,
+      # 否則 CI 環境找不到主題、又無法互動式安裝,會直接失敗
+      - name: Install Slidev
+        run: |
+          npm init -y
+          npm install @slidev/cli@latest @slidev/theme-default@latest
+
+      # 用本地安裝的 slidev 建置。--base 必須是 /repo名/(含前後斜線),自動帶入
       - name: Build slides
-        run: npx -y @slidev/cli build slides/slides.md --base "/${{ github.event.repository.name }}/" --out dist
+        run: npx slidev build slides/slides.md --base "/${{ github.event.repository.name }}/" --out dist
 
       - uses: actions/upload-pages-artifact@v3
         with:
