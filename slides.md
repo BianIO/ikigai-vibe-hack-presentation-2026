@@ -252,42 +252,34 @@ class: ui-slide
 
 <script setup>
 import { ref } from 'vue'
-const base = import.meta.env.BASE_URL
-const shotOk = ref(true)
+import demoUrl from './assets/demo.mp4'
+
+const videoOk = ref(true)
 </script>
 
 <div class="ui-wrap">
   <div class="head">
     <span class="tag">INSIDE LUMIWAY</span>
-    <h2>Everything on one screen.</h2>
+    <h2>App Demo</h2>
   </div>
 
   <div class="device">
     <div class="phone">
       <div class="notch"></div>
-      <img v-show="shotOk" :src="base + 'assets/screen.png'" @error="shotOk = false" class="screen" alt="LumiWay screen"/>
-      <div v-show="!shotOk" class="screen screen-ph">
+      <video 
+        v-show="videoOk" 
+        :src="demoUrl" 
+        class="screen" 
+        autoplay 
+        loop 
+        muted 
+        playsinline
+        @error="videoOk = false"
+      ></video>
+      <div v-show="!videoOk" class="screen screen-ph">
         <div class="ph-dot"></div>
-        <span>Drop your screenshot at<br/><code>slides/assets/screen.png</code></span>
+        <span>Drop your video at<br/><code>assets/demo.mp4</code></span>
       </div>
-    </div>
-
-    <!-- annotations point at the interface; adjust each hotspot's `top` + side (l/r) once the real screenshot is in -->
-    <div class="hot r h1" v-click="1">
-      <span class="dot">1</span><span class="lead"></span>
-      <div class="callout"><b>Surrounding Risk Check</b><p>See every hazard near you — community reports plus official open data.</p></div>
-    </div>
-    <div class="hot l h2" v-click="2">
-      <span class="dot">2</span><span class="lead"></span>
-      <div class="callout"><b>Crowdsourced Reporting</b><p>Pin a dark alley, broken light, or hidden camera; a reputation score keeps it trustworthy.</p></div>
-    </div>
-    <div class="hot r h3" v-click="3">
-      <span class="dot">3</span><span class="lead"></span>
-      <div class="callout"><b>Risk-Mitigated Navigation</b><p>Walk a route that avoids reported risks and favors bright, 24/7-lit streets.</p></div>
-    </div>
-    <div class="hot l h4" v-click="4">
-      <span class="dot">4</span><span class="lead"></span>
-      <div class="callout"><b>Smart SOS Hub</b><p>One tap shares your live location with trusted contacts.</p></div>
     </div>
   </div>
 </div>
@@ -306,16 +298,4 @@ const shotOk = ref(true)
 .screen-ph { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .9rem; text-align: center; font-size: .72rem; color: #6b80a0; background: linear-gradient(160deg,#13203a,#0b1426); }
 .screen-ph code { color: #fbbf24; }
 .ph-dot { width: 48px; height: 48px; border-radius: 50%; border: 2px dashed #314865; }
-
-/* annotation callouts hugging the interface */
-.hot { position: absolute; display: flex; align-items: center; width: 270px; }
-.hot.r { left: calc(100% - 24px); }
-.hot.l { right: calc(100% - 24px); flex-direction: row-reverse; text-align: right; }
-.hot .dot { flex: none; width: 26px; height: 26px; border-radius: 50%; background: #fbbf24; color: #1a1407; font-weight: 800; font-size: .8rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 4px rgba(251,191,36,.18); }
-.hot .lead { flex: none; width: 30px; height: 2px; background: linear-gradient(90deg,#fbbf24,transparent); }
-.hot.l .lead { background: linear-gradient(270deg,#fbbf24,transparent); }
-.hot .callout { background: rgba(255,255,255,.04); border: 1px solid #1d2a43; border-radius: 11px; padding: .6rem .8rem; }
-.hot .callout b { font-size: .92rem; font-weight: 700; }
-.hot .callout p { margin: .15rem 0 0; font-size: .76rem; line-height: 1.35; color: #9fb2cd; }
-.h1 { top: 6%; } .h2 { top: 33%; } .h3 { top: 60%; } .h4 { top: 84%; }
 </style>
