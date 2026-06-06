@@ -24,16 +24,18 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install Slidev and Dependencies
+      - name: Install Slidev and dependencies
         run: |
           npm init -y
-          npm install @slidev/cli@latest @slidev/theme-default@latest vue --legacy-peer-deps
+          npm install @slidev/cli@latest @slidev/theme-default@latest vue@latest --legacy-peer-deps
 
       - name: Build slides
-        run: npx slidev build slides.md --base "/ikigai-vibe-hack-presentation-2026/" --out "$GITHUB_WORKSPACE/dist"
+        run: npx slidev build ./slides.md --base "/${{ github.event.repository.name }}/" --out dist
 
-      - name: Ensure 404.html for SPA routing
-        run: cp dist/index.html dist/404.html
+      - name: Prepare GitHub Pages artifact
+        run: |
+          cp dist/index.html dist/404.html
+          touch dist/.nojekyll
 
       - uses: actions/configure-pages@v4
 
