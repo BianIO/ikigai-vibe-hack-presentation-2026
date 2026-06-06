@@ -15,7 +15,8 @@ fonts:
 <div class="h-full flex flex-col justify-center title-slide">
   <div class="kicker">IKIGAI VIBE HACK · COMMUNITY SAFETY</div>
   <h1 class="main-title">LumiWay</h1>
-  <p class="subtitle">A crowdsourced safety map <br> Surfaces a city&#39;s hidden risks <br>Lights a safer way through it</p>
+  <p class="subtitle">See the risk.<br/>Light the way.</p>
+  <p class="tagline">A crowdsourced safety map for the whole city.</p>
   <div class="hint">Press → / Space to play</div>
 </div>
 
@@ -25,7 +26,8 @@ fonts:
 .title-slide { position: relative; z-index: 2; padding-left: 1rem; }
 .title-slide .kicker { letter-spacing: .5em; font-size: .78rem; font-weight: 700; color: #fbbf24; margin-bottom: 1.1rem; }
 .title-slide .main-title { font-family: 'Bricolage Grotesque','Manrope',sans-serif; font-size: 6rem; font-weight: 800; line-height: .9; margin: 0; letter-spacing: -.02em; background: linear-gradient(180deg,#ffffff 0%,#ffe7a3 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.title-slide .subtitle { margin-top: 1.6rem; max-width: 31ch; font-size: 1.25rem; line-height: 1.45; color: #aebfd6; }
+.title-slide .subtitle { margin-top: 1.6rem; font-family: 'Bricolage Grotesque','Manrope',sans-serif; font-size: 2.1rem; font-weight: 700; line-height: 1.15; letter-spacing: -.01em; color: #ffffff; }
+.title-slide .tagline { margin-top: .8rem; font-size: 1rem; color: #8aa0bd; }
 .title-slide .hint { margin-top: 2.6rem; display: inline-block; font-size: .76rem; color: #5b6f8c; border: 1px solid #1e2c45; padding: .4rem 1rem; border-radius: 999px; }
 .bg-orbits { position: absolute; inset: 0; z-index: 1; background:
   radial-gradient(60% 80% at 80% 45%, rgba(251,191,36,.16), transparent 60%),
@@ -100,7 +102,7 @@ class: crowd-slide
 </svg>
 
   <div class="cap">{{ $clicks >= 3 ? 'Every report lands on one shared safety map.'
-     : $clicks >= 2 ? 'Anyone flags a hazard in seconds — a dark alley, a broken light, a hidden camera.'
+     : $clicks >= 2 ? 'Anyone flags a hazard in seconds: a dark alley, a hidden camera.'
      : $clicks >= 1 ? 'But the whole neighborhood is watching.'
      : 'Risks hide in plain sight.' }}</div>
 </div>
@@ -113,7 +115,7 @@ class: crowd-slide
 .crowd-slide .head h2 { font-family: 'Bricolage Grotesque','Manrope',sans-serif; font-size: 2.3rem; font-weight: 800; margin: .2rem 0 0; letter-spacing: -.01em; }
 .crowd-slide .viz { width: 100%; max-width: 640px; height: auto; }
 .card-tag { font-size: 11px; letter-spacing: .25em; font-weight: 700; fill: #4a5f7e; }
-.crowd-slide .cap { font-size: 1.12rem; font-weight: 600; color: #b6c6dd; min-height: 1.5em; text-align: center; max-width: 44ch; }
+.crowd-slide .cap { font-size: 1.12rem; font-weight: 600; line-height: 1.3; color: #b6c6dd; height: 2.8em; display: flex; align-items: center; justify-content: center; text-align: center; max-width: 44ch; }
 
 .people, .reports, .collect { transition: opacity .55s ease, transform .55s ease; }
 .reports { transform-box: fill-box; transition: opacity .5s ease; }
@@ -222,7 +224,7 @@ import streetUrl from './assets/street.png'
 .nav-slide .head .tag { font-size: .72rem; letter-spacing: .42em; font-weight: 700; color: #5eead4; }
 .nav-slide .head h2 { font-family: 'Bricolage Grotesque','Manrope',sans-serif; font-size: 2.3rem; font-weight: 800; margin: .2rem 0 0; }
 .nav-slide .viz { width: 100%; max-width: 720px; height: auto; border-radius: 16px; box-shadow: 0 22px 44px rgba(2,6,23,.45); }
-.nav-slide .cap { font-size: 1.1rem; font-weight: 600; color: #b6c6dd; min-height: 1.5em; text-align: center; max-width: 48ch; }
+.nav-slide .cap { font-size: 1.1rem; font-weight: 600; line-height: 1.3; color: #b6c6dd; height: 2.8em; display: flex; align-items: center; justify-content: center; text-align: center; max-width: 48ch; }
 
 .lbl { font-size: 13px; font-weight: 800; fill: #f1f5f9; stroke: #0b1426; stroke-width: 3.2px; paint-order: stroke; }
 .marker { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .55s cubic-bezier(.34,1.56,.64,1), opacity .35s ease; }
