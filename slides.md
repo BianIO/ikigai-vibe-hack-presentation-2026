@@ -102,7 +102,7 @@ class: crowd-slide
 </svg>
 
   <div class="cap">{{ $clicks >= 3 ? 'Every report lands on one shared safety map.'
-     : $clicks >= 2 ? 'Anyone flags a hazard in seconds: a dark alley, a hidden camera.'
+     : $clicks >= 2 ? 'Quickly report risks like dark alleys or blind spots.'
      : $clicks >= 1 ? 'But the whole neighborhood is watching.'
      : 'Risks hide in plain sight.' }}</div>
 </div>
