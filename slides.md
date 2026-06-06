@@ -115,7 +115,7 @@ class: crowd-slide
 .crowd-slide .head h2 { font-family: 'Bricolage Grotesque','Manrope',sans-serif; font-size: 2.3rem; font-weight: 800; margin: .2rem 0 0; letter-spacing: -.01em; }
 .crowd-slide .viz { width: 100%; max-width: 640px; height: auto; }
 .card-tag { font-size: 11px; letter-spacing: .25em; font-weight: 700; fill: #4a5f7e; }
-.crowd-slide .cap { font-size: 1.12rem; font-weight: 600; line-height: 1.3; color: #b6c6dd; height: 2.8em; display: flex; align-items: center; justify-content: center; text-align: center; max-width: 44ch; }
+.crowd-slide .cap { font-size: 1.12rem; font-weight: 600; line-height: 1.3; color: #b6c6dd; height: 2.8em; flex: none; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; max-width: 44ch; }
 
 .people, .reports, .collect { transition: opacity .55s ease, transform .55s ease; }
 .reports { transform-box: fill-box; transition: opacity .5s ease; }
@@ -159,45 +159,46 @@ import streetUrl from './assets/street.png'
 
   <!-- fastest route: drawn at click 3, dimmed at click 4 -->
   <path class="route route-old" :class="{ dim: $clicks >= 4 }" v-click="3" pathLength="1"
-    d="M 120 400 L 120 235 L 430 235 L 430 110 L 690 110" stroke="url(#oldGrad)"/>
+    d="M 150 400 L 150 320 L 230 320 L 230 235 L 395 235 L 395 160 L 470 160 L 470 110 L 507 110" stroke="url(#oldGrad)"/>
   <!-- safe route: drawn at click 4 -->
   <path class="route route-new" v-click="4" pathLength="1"
-    d="M 120 400 L 580 400 L 580 110 L 690 110" stroke="url(#newGrad)"/>
+    d="M 150 400 L 560 400 L 560 150 L 507 110" stroke="url(#newGrad)"/>
 
   <!-- HAZARDS first (click 1) -->
-  <g transform="translate(120,318)"><g class="marker danger" v-click="1">
-    <circle class="pulse" cx="0" cy="-35" r="12" fill="#94a3b8"/>
-    <path d="M0 0 C -16 -26 -16 -36 0 -48 C 16 -36 16 -26 0 0 Z" fill="#475569" filter="url(#soft)"/>
+  <g transform="translate(230,320)"><g class="marker danger" v-click="1">
+    <circle class="pulse" cx="0" cy="-35" r="12" fill="#3b82f6"/>
+    <path d="M0 0 C -16 -26 -16 -36 0 -48 C 16 -36 16 -26 0 0 Z" fill="#2563eb" filter="url(#soft)"/>
     <circle cx="0" cy="-35" r="10.5" fill="#ffffff"/>
-    <text x="0" y="-30.5" text-anchor="middle" font-size="13" font-weight="800" fill="#475569">!</text>
-    <text class="lbl" x="0" y="-58" text-anchor="middle">Unlit street</text>
+    <path d="M-6.5 -35 Q0 -41 6.5 -35 Q0 -29 -6.5 -35 Z" fill="none" stroke="#2563eb" stroke-width="1.6"/>
+    <circle cx="0" cy="-35" r="2" fill="#2563eb"/>
+    <text class="lbl" x="0" y="-58" text-anchor="middle">Blind spot</text>
   </g></g>
 
-  <g transform="translate(270,235)"><g class="marker danger" v-click="1">
-    <circle class="pulse" cx="0" cy="-35" r="12" fill="#94a3b8"/>
-    <path d="M0 0 C -16 -26 -16 -36 0 -48 C 16 -36 16 -26 0 0 Z" fill="#334155" filter="url(#soft)"/>
-    <circle cx="0" cy="-35" r="10.5" fill="#ffffff"/>
-    <text x="0" y="-30.5" text-anchor="middle" font-size="13" font-weight="800" fill="#334155">!</text>
-    <text class="lbl" x="0" y="-58" text-anchor="middle">Dark alley</text>
-  </g></g>
-
-  <g transform="translate(430,165)"><g class="marker danger" v-click="1">
+  <g transform="translate(395,235)"><g class="marker danger" v-click="1">
     <circle class="pulse" cx="0" cy="-35" r="12" fill="#f43f5e"/>
     <path d="M0 0 C -16 -26 -16 -36 0 -48 C 16 -36 16 -26 0 0 Z" fill="#e11d48" filter="url(#soft)"/>
     <circle cx="0" cy="-35" r="10.5" fill="#ffffff"/>
-    <text x="0" y="-30.5" text-anchor="middle" font-size="13" font-weight="800" fill="#e11d48">!</text>
-    <text class="lbl" x="0" y="-58" text-anchor="middle">Assault report</text>
+    <text x="0" y="-29.5" text-anchor="middle" font-size="18" font-weight="800" fill="#e11d48">+</text>
+    <text class="lbl" x="0" y="-58" text-anchor="middle">Injury</text>
+  </g></g>
+
+  <g transform="translate(470,160)"><g class="marker danger" v-click="1">
+    <circle class="pulse" cx="0" cy="-35" r="12" fill="#3b82f6"/>
+    <path d="M0 0 C -16 -26 -16 -36 0 -48 C 16 -36 16 -26 0 0 Z" fill="#2563eb" filter="url(#soft)"/>
+    <circle cx="0" cy="-35" r="10.5" fill="#ffffff"/>
+    <text x="0" y="-30.5" text-anchor="middle" font-size="13" font-weight="800" fill="#2563eb">!</text>
+    <text class="lbl" x="0" y="-58" text-anchor="middle">Hazard</text>
   </g></g>
 
   <!-- START (click 2) -->
-  <g transform="translate(120,400)"><g class="marker" v-click="2">
+  <g transform="translate(150,400)"><g class="marker" v-click="2">
     <path d="M0 0 C -16 -26 -16 -36 0 -48 C 16 -36 16 -26 0 0 Z" fill="#10b981" filter="url(#soft)"/>
     <circle cx="0" cy="-35" r="10.5" fill="#ffffff"/><circle cx="0" cy="-35" r="4.5" fill="#10b981"/>
     <text class="lbl" x="0" y="-58" text-anchor="middle">Start</text>
   </g></g>
 
   <!-- DESTINATION (click 2) -->
-  <g transform="translate(690,110)"><g class="marker" v-click="2">
+  <g transform="translate(507,110)"><g class="marker" v-click="2">
     <path d="M0 0 C -16 -26 -16 -36 0 -48 C 16 -36 16 -26 0 0 Z" fill="#6366f1" filter="url(#soft)"/>
     <circle cx="0" cy="-35" r="10.5" fill="#ffffff"/>
     <path d="M-4 -40 L-4 -30 M-4 -40 L4 -37 L-4 -34" stroke="#6366f1" stroke-width="2.2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
@@ -205,10 +206,10 @@ import streetUrl from './assets/street.png'
   </g></g>
 </svg>
 
-  <div class="cap">{{ $clicks >= 4 ? 'LumiWay routes around every reported risk — favoring bright, 24/7-lit streets.'
-     : $clicks >= 3 ? 'A standard map sends you the fastest way — straight past them.'
+  <div class="cap">{{ $clicks >= 4 ? 'LumiWay reroutes around every risk, favoring bright, 24/7-lit streets.'
+     : $clicks >= 3 ? 'A standard map sends you the fastest way, straight past them.'
      : $clicks >= 2 ? 'You need to walk from here to there.'
-     : $clicks >= 1 ? 'Reported unsafe spots: unlit streets, dark alleys, an assault.'
+     : $clicks >= 1 ? 'Reported risks here: an injury, a blind spot, and a hazard.'
      : 'The community has already mapped the risks here.' }}</div>
 
   <div class="legend">
@@ -224,7 +225,7 @@ import streetUrl from './assets/street.png'
 .nav-slide .head .tag { font-size: .72rem; letter-spacing: .42em; font-weight: 700; color: #5eead4; }
 .nav-slide .head h2 { font-family: 'Bricolage Grotesque','Manrope',sans-serif; font-size: 2.3rem; font-weight: 800; margin: .2rem 0 0; }
 .nav-slide .viz { width: 100%; max-width: 720px; height: auto; border-radius: 16px; box-shadow: 0 22px 44px rgba(2,6,23,.45); }
-.nav-slide .cap { font-size: 1.1rem; font-weight: 600; line-height: 1.3; color: #b6c6dd; height: 2.8em; display: flex; align-items: center; justify-content: center; text-align: center; max-width: 48ch; }
+.nav-slide .cap { font-size: 1.1rem; font-weight: 600; line-height: 1.3; color: #b6c6dd; height: 2.8em; flex: none; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; max-width: 48ch; }
 
 .lbl { font-size: 13px; font-weight: 800; fill: #f1f5f9; stroke: #0b1426; stroke-width: 3.2px; paint-order: stroke; }
 .marker { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .55s cubic-bezier(.34,1.56,.64,1), opacity .35s ease; }
