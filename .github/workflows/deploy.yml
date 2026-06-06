@@ -3,7 +3,7 @@ name: Deploy Slides to GitHub Pages
 on:
   push:
     branches: [main]   # 若預設分支是 master 請改這裡
-  workflow_dispatch:    # 也可在 Actions 頁手動觸發
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -22,18 +22,17 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22          # Slidev 新版相依套件需要 Node >=22
+          node-version: 22
 
-      # 先把 CLI 與主題一起裝到本地 node_modules,
-      # 否則 CI 環境找不到主題、又無法互動式安裝,會直接失敗
       - name: Install Slidev
         run: |
           npm init -y
           npm install @slidev/cli@latest @slidev/theme-default@latest
 
-      # 用本地安裝的 slidev 建置。--base 必須是 /repo名/(含前後斜線),自動帶入
+      # --out 用絕對路徑,強制輸出到 repo 根目錄的 dist
+      # (Slidev 的相對 --out 會以投影片所在目錄為基準,導致跑到 slides/dist)
       - name: Build slides
-        run: npx slidev build slides/slides.md --base "/${{ github.event.repository.name }}/" --out dist
+        run: npx slidev build slides/slides.md --base "/${{ github.event.repository.name }}/" --out "$GITHUB_WORKSPACE/dist"
 
       - uses: actions/upload-pages-artifact@v3
         with:
