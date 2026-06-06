@@ -366,7 +366,7 @@ const imgOk = ref(true)
     <div class="hot r h-route" v-click="1">
       <span class="dot">2</span><span class="lead"></span>
       <div class="callout">
-        <b>Live Route Updates</b>
+        <b>Live Updates</b>
       </div>
     </div>
   </div>
