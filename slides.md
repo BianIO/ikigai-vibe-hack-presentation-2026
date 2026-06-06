@@ -252,39 +252,48 @@ class: ui-slide
 
 <script setup>
 import { ref } from 'vue'
-import demoUrl from './assets/demo.mp4'
+import reportImg from './assets/report.jpg'
 
-const videoOk = ref(true)
+const imgOk = ref(true)
 </script>
 
 <div class="ui-wrap">
   <div class="head">
-    <span class="tag">INSIDE LUMIWAY</span>
-    <h2>App Demo</h2>
+    <span class="tag">USER INTELLIGENCE</span>
+    <h2>Interactive Safety Map</h2>
   </div>
 
   <div class="device">
     <div class="phone">
       <div class="notch"></div>
-      <video 
-        v-show="videoOk" 
-        :src="demoUrl" 
+      <img 
+        v-show="imgOk" 
+        :src="reportImg" 
         class="screen" 
-        autoplay 
-        loop 
-        muted 
-        playsinline
-        @error="videoOk = false"
-      ></video>
-      <div v-show="!videoOk" class="screen screen-ph">
+        alt="LumiWay Report UI"
+        @error="imgOk = false"
+      />
+      <div v-show="!imgOk" class="screen screen-ph">
         <div class="ph-dot"></div>
-        <span>Drop your video at<br/><code>assets/demo.mp4</code></span>
+        <span>Missing: assets/report.jpg</span>
+      </div>
+    </div>
+    <div class="hot l h-map" v-click="1">
+      <span class="dot">1</span><span class="lead"></span>
+      <div class="callout">
+        <b>Safety Awareness</b>
+      </div>
+    </div>
+    <div class="hot r h-btn" v-click="1">
+      <span class="dot">2</span><span class="lead"></span>
+      <div class="callout">
+        <b>Instant Reporting</b>
       </div>
     </div>
   </div>
 </div>
 
-<style>
+<style scoped>
 .ui-slide { background: radial-gradient(120% 120% at 80% 0%, #0d1730 0%, #080d1c 65%, #05080f 100%); color: #e8eef7; }
 .ui-wrap { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.2rem; }
 .ui-wrap .head { text-align: center; }
@@ -295,7 +304,101 @@ const videoOk = ref(true)
 .phone { width: 200px; aspect-ratio: 9 / 19; background: #0b1220; border: 1px solid #20304c; border-radius: 30px; padding: 8px; position: relative; box-shadow: 0 26px 55px rgba(2,6,23,.55); }
 .phone .notch { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 74px; height: 16px; background: #0b1220; border-radius: 0 0 11px 11px; z-index: 2; }
 .screen { width: 100%; height: 100%; object-fit: cover; border-radius: 23px; display: block; }
-.screen-ph { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .9rem; text-align: center; font-size: .72rem; color: #6b80a0; background: linear-gradient(160deg,#13203a,#0b1426); }
-.screen-ph code { color: #fbbf24; }
-.ph-dot { width: 48px; height: 48px; border-radius: 50%; border: 2px dashed #314865; }
+.screen-ph { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .9rem; text-align: center; font-size: .72rem; color: #6b80a0; background: #13203a; border-radius: 23px; }
+
+.hot { position: absolute; display: flex; align-items: center; width: 260px; pointer-events: none; }
+.hot .dot { flex: none; width: 26px; height: 26px; border-radius: 50%; background: #fbbf24; color: #1a1407; font-weight: 800; font-size: .8rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 4px rgba(251,191,36,.18); }
+.hot .lead { flex: none; width: 25px; height: 2px; background: linear-gradient(90deg,#fbbf24,transparent); }
+.hot .callout { background: rgba(13, 23, 48, 0.85); backdrop-filter: blur(8px); border: 1px solid #20304c; border-radius: 11px; padding: .6rem .8rem; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+.hot .callout b { font-size: .92rem; font-weight: 700; color: #ffffff; }
+.hot .callout p { margin: .15rem 0 0; font-size: .76rem; line-height: 1.35; color: #9fb2cd; }
+
+/* Map Icons (Mid-Left) */
+.hot.l { right: calc(100% - 20px); flex-direction: row-reverse; text-align: right; }
+.hot.l .lead { background: linear-gradient(270deg,#fbbf24,transparent); }
+.h-map { top: 45%; }
+
+/* Report Button (Bottom-Right) */
+.hot.r { left: calc(100% - 20px); }
+.h-btn { top: 70%; }
+</style>
+
+---
+transition: fade
+class: ui-slide
+---
+
+<script setup>
+import { ref } from 'vue'
+// Assumes you have saved image_1.png as nav.jpg in your assets folder
+import navImg from './assets/nav.jpg'
+
+const imgOk = ref(true)
+</script>
+
+<div class="ui-wrap">
+  <div class="head">
+    <span class="tag">ALGORITHMIC SAFETY</span>
+    <h2>Optimized Navigation</h2>
+  </div>
+
+  <div class="device">
+    <div class="phone">
+      <div class="notch"></div>
+      <img 
+        v-show="imgOk" 
+        :src="navImg" 
+        class="screen" 
+        alt="LumiWay Navigation UI"
+        @error="imgOk = false"
+      />
+      <div v-show="!imgOk" class="screen screen-ph">
+        <div class="ph-dot"></div>
+        <span>Missing: assets/nav.jpg</span>
+      </div>
+    </div>
+    <div class="hot l h-mitigate" v-click="1">
+      <span class="dot">1</span><span class="lead"></span>
+      <div class="callout">
+        <b>Threat Mitigation</b>
+      </div>
+    </div>
+    <div class="hot r h-route" v-click="1">
+      <span class="dot">2</span><span class="lead"></span>
+      <div class="callout">
+        <b>Live Route Updates</b>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style scoped>
+/* Scoped styles ensure positions don't leak between slides */
+.ui-slide { background: radial-gradient(120% 120% at 80% 0%, #0d1730 0%, #080d1c 65%, #05080f 100%); color: #e8eef7; }
+.ui-wrap { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.2rem; }
+.ui-wrap .head { text-align: center; }
+.ui-wrap .head .tag { font-size: .72rem; letter-spacing: .42em; font-weight: 700; color: #fbbf24; }
+.ui-wrap .head h2 { font-family: 'Bricolage Grotesque','Manrope',sans-serif; font-size: 2.2rem; font-weight: 800; margin: .2rem 0 0; }
+
+.device { position: relative; width: 200px; }
+.phone { width: 200px; aspect-ratio: 9 / 19; background: #0b1220; border: 1px solid #20304c; border-radius: 30px; padding: 8px; position: relative; box-shadow: 0 26px 55px rgba(2,6,23,.55); }
+.phone .notch { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 74px; height: 16px; background: #0b1220; border-radius: 0 0 11px 11px; z-index: 2; }
+.screen { width: 100%; height: 100%; object-fit: cover; border-radius: 23px; display: block; }
+.screen-ph { display: flex; align-items: center; justify-content: center; text-align: center; font-size: .7rem; color: #6b80a0; background: #13203a; border-radius: 23px; }
+
+.hot { position: absolute; display: flex; align-items: center; width: 260px; pointer-events: none; }
+.hot .dot { flex: none; width: 26px; height: 26px; border-radius: 50%; background: #fbbf24; color: #1a1407; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.hot .lead { flex: none; width: 25px; height: 2px; background: linear-gradient(90deg,#fbbf24,transparent); }
+.hot .callout { background: rgba(13, 23, 48, 0.85); backdrop-filter: blur(8px); border: 1px solid #20304c; border-radius: 11px; padding: .6rem .8rem; }
+.hot .callout b { font-size: .92rem; font-weight: 700; }
+.hot .callout p { margin: .15rem 0 0; font-size: .76rem; line-height: 1.35; color: #9fb2cd; }
+
+/* Positioning (L) towards the top path */
+.hot.l { right: calc(100% - 20px); flex-direction: row-reverse; text-align: right; }
+.hot.l .lead { background: linear-gradient(270deg,#fbbf24,transparent); }
+.h-mitigate { top: 35%; }
+
+/* Positioning (R) towards the center map pins */
+.hot.r { left: calc(100% - 20px); }
+.h-route { top: 70%; }
 </style>
