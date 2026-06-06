@@ -30,7 +30,7 @@ jobs:
           npm install @slidev/cli@latest @slidev/theme-default@latest vue --legacy-peer-deps
 
       - name: Build slides
-        run: npx slidev build slides.md --base "/${{ github.event.repository.name }}/" --out "$GITHUB_WORKSPACE/dist"
+        run: npx slidev build slides.md --base "/ikigai-vibe-hack-presentation-2026/" --out "$GITHUB_WORKSPACE/dist"
 
       - name: Ensure 404.html for SPA routing
         run: cp dist/index.html dist/404.html
