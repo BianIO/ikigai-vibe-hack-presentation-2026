@@ -4,7 +4,6 @@ title: 路線優化提案
 titleTemplate: '%s'
 transition: fade-out
 mdc: true
-routerMode: hash   # GitHub Pages 用 hash 路由,網址變 /#/2,深層連結與重整都不會 404
 fonts:
   sans: 'Noto Sans TC'
   weights: '400,600,700,800'
@@ -32,7 +31,7 @@ class: map-slide
 
 <script setup>
 // 與 slides.md 同層放一張 street.png;用 import 讓 Vite 產生帶 base 的正確網址
-import streetUrl from './street.png'
+import streetUrl from './assets/street.png'
 </script>
 
 <div class="stage">

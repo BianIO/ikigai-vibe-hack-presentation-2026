@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -29,13 +29,12 @@ jobs:
           npm init -y
           npm install @slidev/cli@latest @slidev/theme-default@latest
 
+      # history 路由 + --base;不要手動 cp 404.html,
+      # Slidev build 會自動產生能處理深層連結的 404.html
       - name: Build slides
         run: npx slidev build slides/slides.md --base "/${{ github.event.repository.name }}/" --out "$GITHUB_WORKSPACE/dist"
 
-      # GitHub Pages 沒有 SPA fallback,複製一份 404.html,
-      # 讓 /…/2 這類深層路徑也能載入同一個入口,再由前端路由接手
-      - name: SPA fallback
-        run: cp "$GITHUB_WORKSPACE/dist/index.html" "$GITHUB_WORKSPACE/dist/404.html"
+      - uses: actions/configure-pages@v4
 
       - uses: actions/upload-pages-artifact@v3
         with:
