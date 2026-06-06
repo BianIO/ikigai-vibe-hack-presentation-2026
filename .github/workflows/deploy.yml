@@ -30,8 +30,8 @@ jobs:
           npm install @slidev/cli@latest @slidev/theme-default@latest vue@latest --legacy-peer-deps
 
       - name: Build slides
-        # Use absolute base path dynamically fetched from GitHub repository name for correct Vue Router navigation.
-        run: npx slidev build ./slides.md --base "/${{ github.event.repository.name }}/" --out dist
+        # Use hardcoded base path to prevent GitHub Pages routing conflicts
+        run: npx slidev build ./slides.md --base "/ikigai-vibe-hack-presentation-2026/" --out dist
 
       - name: Prepare GitHub Pages artifact
         run: |
