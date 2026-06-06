@@ -206,7 +206,7 @@ import streetUrl from './assets/street.png'
   </g></g>
 </svg>
 
-  <div class="cap">{{ $clicks >= 4 ? 'LumiWay reroutes around every risk, favoring bright, 24/7-lit streets.'
+  <div class="cap">{{ $clicks >= 4 ? 'LumiWay finds the safest, brightest route.'
      : $clicks >= 3 ? 'A standard map sends you the fastest way, straight past them.'
      : $clicks >= 2 ? 'You need to walk from here to there.'
      : $clicks >= 1 ? 'Reported risks here: an injury, a blind spot, and a hazard.'
