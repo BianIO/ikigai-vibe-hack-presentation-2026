@@ -1,13 +1,8 @@
-FROM node:20-slim
-WORKDIR /app
+FROM tangramor/slidev:latest
 
-RUN npm init -y
-RUN npm install @slidev/cli@latest
-RUN npm install @slidev/theme-default
+WORKDIR /slidev
 
-COPY slides.md .
-COPY assets/ ./assets/
+COPY slides.md ./slides.md
+COPY assets ./assets
 
 EXPOSE 3030
-
-CMD ["npx", "slidev", "slides.md", "--remote", "--port", "3030"]

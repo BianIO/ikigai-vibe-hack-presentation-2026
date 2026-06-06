@@ -30,7 +30,8 @@ jobs:
           npm install @slidev/cli@latest @slidev/theme-default@latest vue@latest --legacy-peer-deps
 
       - name: Build slides
-        run: npx slidev build ./slides.md --base "/${{ github.event.repository.name }}/" --out dist
+        # Use a relative asset base so Slidev navigation stays under the GitHub Pages repo path.
+        run: npx slidev build ./slides.md --base "./" --out dist
 
       - name: Prepare GitHub Pages artifact
         run: |
