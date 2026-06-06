@@ -207,7 +207,7 @@ import streetUrl from './assets/street.png'
 </svg>
 
   <div class="cap">{{ $clicks >= 4 ? 'LumiWay finds the safest, brightest route.'
-     : $clicks >= 3 ? 'A standard map sends you the fastest way, straight past them.'
+     : $clicks >= 3 ? 'A standard map sends you the fastest way, straight pass them.'
      : $clicks >= 2 ? 'You need to walk from here to there.'
      : $clicks >= 1 ? 'Reported risks here: an injury, a blind spot, and a hazard.'
      : 'The community has already mapped the risks here.' }}</div>
