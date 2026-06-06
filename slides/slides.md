@@ -4,6 +4,7 @@ title: 路線優化提案
 titleTemplate: '%s'
 transition: fade-out
 mdc: true
+routerMode: hash   # GitHub Pages 用 hash 路由,網址變 /#/2,深層連結與重整都不會 404
 fonts:
   sans: 'Noto Sans TC'
   weights: '400,600,700,800'
@@ -29,6 +30,11 @@ transition: fade
 class: map-slide
 ---
 
+<script setup>
+// 與 slides.md 同層放一張 street.png;用 import 讓 Vite 產生帶 base 的正確網址
+import streetUrl from './street.png'
+</script>
+
 <div class="stage">
 
 <svg viewBox="0 0 800 520" class="map" xmlns="http://www.w3.org/2000/svg">
@@ -42,26 +48,14 @@ class: map-slide
     <linearGradient id="newGrad" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#34d399"/><stop offset="100%" stop-color="#059669"/>
     </linearGradient>
+    <clipPath id="mapClip"><rect x="0" y="0" width="800" height="520" rx="18"/></clipPath>
   </defs>
 
-  <!-- map base -->
-  <rect x="0" y="0" width="800" height="520" rx="18" fill="#eef2f7"/>
-
-  <!-- city blocks -->
-  <g class="blocks">
-    <rect x="40"  y="40"  width="130" height="110" rx="8" fill="#e2e8f0"/>
-    <rect x="210" y="40"  width="130" height="110" rx="8" fill="#e2e8f0"/>
-    <rect x="380" y="40"  width="130" height="110" rx="8" fill="#d7ead9"/>
-    <rect x="550" y="40"  width="130" height="110" rx="8" fill="#e2e8f0"/>
-    <rect x="40"  y="190" width="130" height="110" rx="8" fill="#e2e8f0"/>
-    <rect x="210" y="190" width="130" height="110" rx="8" fill="#cfe0f2"/>
-    <rect x="380" y="190" width="130" height="110" rx="8" fill="#e2e8f0"/>
-    <rect x="550" y="190" width="130" height="110" rx="8" fill="#e2e8f0"/>
-    <rect x="40"  y="340" width="130" height="110" rx="8" fill="#e2e8f0"/>
-    <rect x="210" y="340" width="130" height="110" rx="8" fill="#e2e8f0"/>
-    <rect x="380" y="340" width="130" height="110" rx="8" fill="#e2e8f0"/>
-    <rect x="550" y="340" width="130" height="110" rx="8" fill="#d7ead9"/>
-  </g>
+  <!-- map base: street.png -->
+  <image :href="streetUrl" x="0" y="0" width="800" height="520"
+         preserveAspectRatio="xMidYMid slice" clip-path="url(#mapClip)"/>
+  <!-- 半透明白幕,讓路線與標記在照片上更清楚;不想要可刪掉這行 -->
+  <rect x="0" y="0" width="800" height="520" rx="18" fill="#ffffff" opacity="0.12"/>
 
   <!-- ROUTES -->
   <!-- old route: drawn at click 3, dimmed at click 5 -->
