@@ -29,10 +29,13 @@ jobs:
           npm init -y
           npm install @slidev/cli@latest @slidev/theme-default@latest
 
-      # --out 用絕對路徑,強制輸出到 repo 根目錄的 dist
-      # (Slidev 的相對 --out 會以投影片所在目錄為基準,導致跑到 slides/dist)
       - name: Build slides
         run: npx slidev build slides/slides.md --base "/${{ github.event.repository.name }}/" --out "$GITHUB_WORKSPACE/dist"
+
+      # GitHub Pages 沒有 SPA fallback,複製一份 404.html,
+      # 讓 /…/2 這類深層路徑也能載入同一個入口,再由前端路由接手
+      - name: SPA fallback
+        run: cp "$GITHUB_WORKSPACE/dist/index.html" "$GITHUB_WORKSPACE/dist/404.html"
 
       - uses: actions/upload-pages-artifact@v3
         with:
