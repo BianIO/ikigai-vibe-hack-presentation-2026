@@ -4,6 +4,7 @@ title: 路線優化提案
 titleTemplate: '%s'
 transition: fade-out
 mdc: true
+routerMode: hash
 fonts:
   sans: 'Noto Sans TC'
   weights: '400,600,700,800'

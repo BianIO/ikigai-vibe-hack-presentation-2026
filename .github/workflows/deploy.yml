@@ -29,8 +29,6 @@ jobs:
           npm init -y
           npm install @slidev/cli@latest @slidev/theme-default@latest
 
-      # history 路由 + --base;不要手動 cp 404.html,
-      # Slidev build 會自動產生能處理深層連結的 404.html
       - name: Build slides
         run: npx slidev build slides.md --base "/${{ github.event.repository.name }}/" --out "$GITHUB_WORKSPACE/dist"
 

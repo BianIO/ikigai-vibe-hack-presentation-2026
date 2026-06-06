@@ -6,6 +6,7 @@ RUN npm install @slidev/cli@latest
 RUN npm install @slidev/theme-default
 
 COPY slides.md .
+COPY assets/ ./assets/
 
 EXPOSE 3030
 
